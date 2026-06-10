@@ -1,0 +1,68 @@
+% Gemini theme
+% https://github.com/anishathalye/gemini
+
+% ====================
+% Definitions (Colores extraídos del CSS de tu HTML)
+% ====================
+
+% Paleta Teal (Verde azulado)
+\definecolor{tealdark}{RGB}{15, 110, 86}      % --teal-dark: #0F6E56
+\definecolor{teallight}{RGB}{225, 245, 238}   % --teal-light: #E1F5EE
+
+% Paleta Amber (Ámbar)
+\definecolor{amberdark}{RGB}{133, 79, 11}     % --amber-dark: #854F0B
+\definecolor{ambermid}{RGB}{186, 117, 23}     % --amber-mid: #BA7517
+\definecolor{amberlight}{RGB}{250, 238, 218}  % --amber-light: #FAEEDA
+
+% Paleta Coral
+\definecolor{coraldark}{RGB}{153, 60, 29}     % --coral-dark: #993C1D
+\definecolor{corallight}{RGB}{250, 236, 231}  % --coral-light: #FAECE7
+
+% Grises y neutros
+\definecolor{ashlight}{RGB}{245, 244, 240}    % --ash-light: #f5f4f0
+\definecolor{graymid}{RGB}{136, 135, 128}     % --gray-mid: #888780
+
+% ====================
+% Theme
+% ====================
+
+% Basic colors
+\setbeamercolor{palette primary}{fg=black,bg=white}
+\setbeamercolor{palette secondary}{fg=black,bg=white}
+\setbeamercolor{palette tertiary}{bg=black,fg=white}
+\setbeamercolor{palette quaternary}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=tealdark} % Viñetas y enumeraciones en teal
+
+% Headline
+% El HTML tiene texto blanco sobre fondo teal-dark
+\setbeamercolor{headline}{fg=white,bg=tealdark}
+% Línea debajo del encabezado en ámbar para un contraste sutil y elegante
+\setbeamercolor{headline rule}{bg=ambermid}
+
+% Block (Bloques estándar)
+\setbeamercolor{block title}{fg=tealdark,bg=white}
+\setbeamercolor{block separator}{bg=graymid} % Un gris más suave que el negro por defecto
+\setbeamercolor{block body}{fg=black,bg=white}
+
+% Alert Block (Bloques de alerta mapeados a la paleta Coral)
+\setbeamercolor{block title alerted}{fg=coraldark,bg=corallight}
+\setbeamercolor{block separator alerted}{bg=coraldark}
+\setbeamercolor{block body alerted}{fg=black,bg=corallight}
+
+% Example Block (Bloques de ejemplo mapeados a la paleta Ámbar)
+\setbeamercolor{block title example}{fg=amberdark,bg=amberlight}
+\setbeamercolor{block separator example}{bg=amberdark}
+\setbeamercolor{block body example}{fg=black,bg=amberlight}
+
+% Heading
+\setbeamercolor{heading}{fg=black}
+
+% Itemize
+\setbeamercolor{item}{fg=tealdark}
+
+% Bibliography
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
