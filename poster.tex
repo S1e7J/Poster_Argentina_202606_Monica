@@ -11,7 +11,7 @@
 \usepackage{lmodern}
 
 % CAMBIO 1: Tamaño A0 y orientación portrait (vertical)
-\usepackage[orientation=portrait,size=a0,scale=1.05]{beamerposter}
+\usepackage[orientation=portrait,size=a0,scale=1.0]{beamerposter}
 
 \usetheme{gemini}
 \usecolortheme{argentina}
@@ -381,14 +381,14 @@
                   width=0.95\linewidth,
                   height=0.4\linewidth,
                   symbolic x coords={1a,1b,2a,2b,2c,2d},
-                  xtick={1a,1b,2a,2b,2c,2d}, % <-- CORRECCIÓN 1: Declarar explícitamente las marcas
+                  xtick={1a,1b,2a,2b,2c,2d},
                   xticklabel style={font=\footnotesize},
                   ytick={0,5000,10000,20000,30000},
                   yticklabels={0,5k,10k,20k,30k},
                   ymin=0, ymax=31000,
                   axis lines=left,
                   enlarge x limits=0.15,
-                  bar width=5cm, % <-- CORRECCIÓN 3: Ajustado a un tamaño que no desborde el documento
+                  bar width=5cm,
                   grid=major,
                   grid style={very thin, gray!40},
                   major grid style={gray!40},
@@ -398,7 +398,6 @@
                   ylabel style={font=\footnotesize},
                 ]
 
-                % Barras existentes
                 \addplot[ybar, fill=graymid, opacity=0.7, rounded corners=2pt] coordinates {(1a,4800)};
                 \addplot[ybar, fill=tealmid, opacity=0.55, rounded corners=2pt] coordinates {(1b,28000)};
                 \addplot[ybar, fill=coralmid, opacity=0.9, rounded corners=2pt] coordinates {(2a,1500)};
@@ -406,15 +405,11 @@
                 \addplot[ybar, fill=tealdark, opacity=0.8, rounded corners=2pt] coordinates {(2c,10000)};
                 \addplot[ybar, fill=tealdark, opacity=0.95, rounded corners=2pt] coordinates {(2d,14000)};
 
-                % Línea de umbral corregida (2100 kcal)
-                % <-- CORRECCIÓN 2: Usar \draw combinando coordenadas relativas (rel axis cs)
-                % con las absolutas (axis cs) para forzar que ocupe todo el margen horizontal.
                 \draw[dashed, thick, gray!70]
                 ({rel axis cs:0,0} |- {axis cs:1a,2100}) --
                 ({rel axis cs:1,0} |- {axis cs:1a,2100})
                 node[midway, above, font=\footnotesize, text=gray!70] {2,100};
 
-                % Etiquetas sobre las barras
                 \node at (axis cs:1a,4800) [above, font=\footnotesize, black]      {4.8k};
                 \node at (axis cs:1b,28000)[above, font=\footnotesize, tealdark]   {28k};
                 \node at (axis cs:2a,1500) [above, font=\footnotesize, coraldark]  {1.5k};
@@ -424,6 +419,18 @@
 
               \end{axis}
             \end{tikzpicture}
+
+            % ---- Caption informativo al final ----
+            \par\vspace{4pt}
+            \begingroup
+            \footnotesize
+            \textbf{1a:} Scenario 1a — Pre-event net production (~4,800 kcal/day/person). Represents actual food available for human consumption after accounting for livestock and biofuel use. Already 2× the minimum requirement.\\
+            \textbf{1b:} Scenario 1b — Pre-event gross production (~28,000 kcal/day/person). Includes all food produced including what goes to animals and biofuels. Illustrates the enormous potential for redirection in a crisis.\\
+            \textbf{2a:} Scenario 2a — 150 Tg ASRS, no adaptation (~1,500 kcal/day/person). Famine conditions: production falls below the 2,100 minimum. Only 71\% of the population's caloric needs are met. Immediate action is required.\\
+            \textbf{2b:} Scenario 2b — Livestock and biofuel redirection (~7,800 kcal/day/person). Redirecting grain from cattle and biofuels to human consumption triples availability vs. 2a — the single most impactful intervention.\\
+            \textbf{2c:} Scenario 2c — + resilient food solutions (~10,000 kcal/day/person). Adding seaweed cultivation, crop relocation, industrial sugars, and SCP protein brings production to ~5× minimum requirements.\\
+            \textbf{2d:} Scenario 2d — + intensive greenhouse expansion and area increase (~14,000 kcal/day/person). Scaling greenhouses to 2.3M ha and cultivated area to 72M ha over 3 years. Surplus sufficient to support ~300M regional population.
+            \endgroup
           \end{labelblock}
         \end{column}
 
