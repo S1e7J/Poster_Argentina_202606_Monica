@@ -119,16 +119,15 @@
 }
 \setbeamertemplate{headline}
 {%
-  \begin{beamercolorbox}[wd=\paperwidth, vmode]{headline}   % ← vmode obligatorio
-    \vspace*{1.5em}                         % espacio superior (funciona gracias a vmode)
+  \begin{beamercolorbox}[wd=\paperwidth, vmode]{headline}
+    \vspace*{4em}
     \centering
     \begin{minipage}{\dimexpr\paperwidth-2\headpad\relax}
       \raggedright
-      \begin{columns}[T, totalwidth=\linewidth]
-        % =====================================================
-        % LEFT COLUMN (TITLE)
-        % =====================================================
-        \begin{column}{0.72\linewidth}
+      % --- Guardamos la columna izquierda en una caja para medir su altura ---
+      \newsavebox{\leftcolumnbox}
+      \begin{lrbox}{\leftcolumnbox}
+        \begin{minipage}{0.72\linewidth}    % mismo ancho que la columna izquierda
           \raggedright
           {\usebeamerfont{headline title}
            \fontsize{32}{36}\selectfont
@@ -142,35 +141,33 @@
            \fontsize{14}{17}\selectfont
            \insertinstitute\par}
           \vspace{0.6em}
-          % {\color{white}
-          %  \colorbox{orange!80!brown}{%
-          %    \parbox[c][1.8em][c]{0.33\columnwidth}{%
-          %      \centering
-          %      \fontsize{10}{10}\selectfont
-          %      \textbf{ASRS --- volcanic, nuclear \& impact scenarios}
-          %    }%
-          %  }%
-          % }
+          % (opcional: el bloque naranja comentado iría aquí si se desea)
+        \end{minipage}
+      \end{lrbox}
+      % --- Ahora construimos las columnas usando la altura medida ---
+      \begin{columns}[T, totalwidth=\linewidth]
+        % Columna izquierda: simplemente volcamos la caja guardada
+        \begin{column}{0.72\linewidth}
+          \usebox{\leftcolumnbox}
         \end{column}
-        % =====================================================
-        % RIGHT COLUMN (META)
-        % =====================================================
+        % Columna derecha: forzamos la misma altura y centramos verticalmente
         \begin{column}{0.24\linewidth}
-          \raggedleft
-          {\fontsize{20}{22}\selectfont
-            Volcanic Impacts on Climate
-            and Society 2026\par}
-          \vspace{0.4em}
-          {\fontsize{20}{22}\selectfont
-           Published in REDER, 8(2), 2024\par}
-          \vspace{0.2em}
-          {\fontsize{20}{22}\selectfont
-           DOI: 10.55467/reder.v8i2.164\par}
+          \parbox[c][\dimexpr\ht\leftcolumnbox+\dp\leftcolumnbox][c]{\columnwidth}{%
+            \raggedleft
+            {\fontsize{20}{22}\selectfont
+              Volcanic Impacts on Climate
+              and Society 2026\par}
+            \vspace{0.4em}
+            {\fontsize{20}{22}\selectfont
+             Published in REDER, 8(2), 2024\par}
+            \vspace{0.2em}
+            {\fontsize{20}{22}\selectfont
+             DOI: 10.55467/reder.v8i2.164\par}
+          }
         \end{column}
       \end{columns}
     \end{minipage}
-
-    \vspace*{1.2em}                         % espacio inferior (también funciona por vmode)
+    \vspace*{4em}
   \end{beamercolorbox}
 }
 % Headline
