@@ -120,14 +120,14 @@
 \setbeamertemplate{headline}
 {%
   \begin{beamercolorbox}[wd=\paperwidth, vmode]{headline}
-    \vspace*{4em}
+    \vspace*{2.5em}
     \centering
     \begin{minipage}{\dimexpr\paperwidth-2\headpad\relax}
       \raggedright
-      % --- Guardamos la columna izquierda en una caja para medir su altura ---
-      \newsavebox{\leftcolumnbox}
-      \begin{lrbox}{\leftcolumnbox}
-        \begin{minipage}{0.72\linewidth}    % mismo ancho que la columna izquierda
+      % --- Guardamos la columna izquierda en una caja con nombre ÚNICO ---
+      \ifdefined\headlineleftbox\else\newsavebox{\headlineleftbox}\fi   % <-- protegido
+      \begin{lrbox}{\headlineleftbox}
+        \begin{minipage}{0.72\linewidth}
           \raggedright
           {\usebeamerfont{headline title}
            \fontsize{32}{36}\selectfont
@@ -141,18 +141,15 @@
            \fontsize{14}{17}\selectfont
            \insertinstitute\par}
           \vspace{0.6em}
-          % (opcional: el bloque naranja comentado iría aquí si se desea)
         \end{minipage}
       \end{lrbox}
       % --- Ahora construimos las columnas usando la altura medida ---
       \begin{columns}[T, totalwidth=\linewidth]
-        % Columna izquierda: simplemente volcamos la caja guardada
         \begin{column}{0.72\linewidth}
-          \usebox{\leftcolumnbox}
+          \usebox{\headlineleftbox}
         \end{column}
-        % Columna derecha: forzamos la misma altura y centramos verticalmente
         \begin{column}{0.24\linewidth}
-          \parbox[c][\dimexpr\ht\leftcolumnbox+\dp\leftcolumnbox][c]{\columnwidth}{%
+          \parbox[c][\dimexpr\ht\headlineleftbox+\dp\headlineleftbox][c]{\columnwidth}{%
             \raggedleft
             {\fontsize{20}{22}\selectfont
               Volcanic Impacts on Climate
@@ -167,7 +164,7 @@
         \end{column}
       \end{columns}
     \end{minipage}
-    \vspace*{4em}
+    \vspace*{2.5em}
   \end{beamercolorbox}
 }
 % Headline
